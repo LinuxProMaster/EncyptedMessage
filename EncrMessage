@@ -1,0 +1,5 @@
+ssh-keygen -t rsa -b 4096 -m PEM -f cryptoKey (generate public and private key)
+ssh-keygen -f cryptoKey.pub -e -m PKCS8 > cryptoKey.public (change format public key)
+rm cryproKey.pub (delete old format public key)
+openssl rsautl -encrypt -pubin -inkey cryproKey.public -in index.txt -out EncryptedMessage.txt (Encrypted with cryptoKey.public index.txt)
+openssl rsautl -decrypt -pubin -inkey cryproKey.public -in EncryptedMessage.txt -out DecryptedMessage.txt (Decrypted)
